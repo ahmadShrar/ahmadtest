@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>قراءة العداد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+<main class="app">
+  <header>
+    <div>
+      <h1>قراءة العداد</h1>
+      <p>سجّل القراءة واحسب مبلغ الاستهلاك</p>
+    </div>
+    <div class="price-box">
+      <label for="price" style="margin:0;font-weight:500">سعر الكيلو</label>
+      <input id="price" type="number" inputmode="decimal" min="0" step="any" aria-describedby="priceHint">
+      <span id="priceHint">شيكل</span>
+    </div>
+  </header>
+
+  <section class="card" aria-label="إدخال القراءات">
+    <div class="grid">
+      <div class="field">
+        <label for="previous">القراءة السابقة</label>
+        <input id="previous" type="number" inputmode="decimal" min="0" step="any" placeholder="0">
+      </div>
+      <div class="field">
+        <label for="current">القراءة الحالية</label>
+        <input id="current" type="number" inputmode="decimal" min="0" step="any" placeholder="0">
+      </div>
+    </div>
+    <div class="note">
+      <label for="noteInput">ملاحظة (اختياري)</label>
+      <input id="noteInput" type="text" maxlength="60" placeholder="مثال: شهر تشرين الثاني">
+    </div>
+    <p class="err" id="err" role="alert"></p>
+  </section>
+
+  <section class="lcd" aria-live="polite" aria-label="نتيجة الحساب">
+    <div class="lbl">المبلغ المطلوب</div>
+    <div class="amount"><span id="total">—</span><small>شيكل</small></div>
+    <div class="meta">
+      <span>الاستهلاك: <b id="diff">—</b> كيلو</span>
+      <span>السعر: <b id="priceView">—</b></span>
+    </div>
+  </section>
+
+  <div class="btns">
+    <button class="primary" id="save" disabled>حفظ القراءة</button>
+    <button class="ghost" id="copy" disabled>نسخ الملخص</button>
+  </div>
+
+  <section class="stats" aria-label="الإجماليات">
+    <div class="stat"><span>عدد السجلات</span><b id="sCount">0</b></div>
+    <div class="stat"><span>إجمالي الكيلو</span><b id="sKwh">0</b></div>
+    <div class="stat"><span>إجمالي المبلغ</span><b id="sSum">0</b></div>
+  </section>
+
+  <div class="sec-head">
+    <h2>سجل الحسابات</h2>
+    <button class="danger" id="clear" style="padding:6px 12px;font-size:14px">حذف الكل</button>
+  </div>
+  <div id="list"></div>
+</main>
+
+<dialog id="dlg">
+  <p id="dlgMsg"></p>
+  <div class="btns">
+    <button class="danger" id="dlgOk">تأكيد الحذف</button>
+    <button class="ghost" id="dlgNo">إلغاء</button>
+  </div>
+</dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="main.js">
+</script>
+</body>
+</html>
