@@ -6,7 +6,7 @@
 <title>قراءة العداد</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+<link rel="stylesheet" href="main.css">
 </head>
 <body>
 <main class="app">
@@ -21,6 +21,16 @@
       <span id="priceHint">شيكل</span>
     </div>
   </header>
+
+  <section class="card" aria-label="المشترك">
+    <label for="sub">المشترك</label>
+    <select id="sub"></select>
+    <div class="sub-actions">
+      <button class="ghost" id="addSub">+ مشترك جديد</button>
+      <button class="ghost" id="renSub">تعديل الاسم</button>
+      <button class="danger" id="delSub">حذف</button>
+    </div>
+  </section>
 
   <section class="card" aria-label="إدخال القراءات">
     <div class="grid">
@@ -54,29 +64,39 @@
     <button class="ghost" id="copy" disabled>نسخ الملخص</button>
   </div>
 
-  <section class="stats" aria-label="الإجماليات">
+  <section class="stats" aria-label="إجماليات المشترك">
     <div class="stat"><span>عدد السجلات</span><b id="sCount">0</b></div>
     <div class="stat"><span>إجمالي الكيلو</span><b id="sKwh">0</b></div>
     <div class="stat"><span>إجمالي المبلغ</span><b id="sSum">0</b></div>
   </section>
 
+  <div class="sec-head"><h2>كل المشتركين</h2></div>
+  <div class="grand"><span>المجموع الكلي</span><b id="grand">0 ش</b></div>
+  <div id="allSubs"></div>
+
   <div class="sec-head">
-    <h2>سجل الحسابات</h2>
-    <button class="danger" id="clear" style="padding:6px 12px;font-size:14px">حذف الكل</button>
+    <h2 id="histTitle">سجل الحسابات</h2>
+    <button class="danger" id="clear" style="padding:6px 12px;font-size:14px">حذف السجلات</button>
   </div>
   <div id="list"></div>
+
+  <div class="backup">
+    <button class="ghost" id="export">تصدير نسخة احتياطية</button>
+    <button class="ghost" id="import">استيراد نسخة</button>
+  </div>
+  <input type="file" id="file" accept="application/json,.json" hidden>
 </main>
 
 <dialog id="dlg">
   <p id="dlgMsg"></p>
+  <input id="dlgInput" type="text" maxlength="40" hidden>
   <div class="btns">
-    <button class="danger" id="dlgOk">تأكيد الحذف</button>
+    <button class="danger" id="dlgOk">تأكيد</button>
     <button class="ghost" id="dlgNo">إلغاء</button>
   </div>
 </dialog>
 <div id="toast" role="status" aria-live="polite"></div>
 
-<script src="main.js">
-</script>
+<script src="main.js"></script>
 </body>
 </html>
